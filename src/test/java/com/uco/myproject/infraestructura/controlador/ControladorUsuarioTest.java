@@ -42,7 +42,7 @@ class ControladorUsuarioTest {
     @Autowired
     RepositorioUsuario repositorioUsuario;
 
-    @Test
+   /* @Test
     @DisplayName("Debe crear una persona de forma exitosa y luego fallar al crear la misma")
     void crearDuplicadaTest() throws Exception {
 
@@ -57,10 +57,10 @@ class ControladorUsuarioTest {
                         .content(objectMapper.writeValueAsString(dto))
                 )
                 .andExpect(status().isConflict());
-    }
+    }*/
 
 
-    @Test
+    /*@Test
     @DisplayName("Debe crear una persona de forma exitosa y validar que si quedó guardada")
     void crearTest() throws Exception {
 
@@ -91,9 +91,9 @@ class ControladorUsuarioTest {
 
         Assertions.assertEquals(dto.getNombre(), persona.getNombre());
         Assertions.assertEquals(dto.getApellido(), persona.getApellido());
-    }
+    }*/
 
-    @Test
+    /*@Test
     @DisplayName("Debe listar las personas luego de crearlas")
     void listarTest() throws Exception {
 
@@ -106,5 +106,5 @@ class ControladorUsuarioTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].nombre", is(dto.getNombre())))
                 .andExpect(jsonPath("$[0].apellido", is(dto.getApellido())));
-    }
+    }*/
 }

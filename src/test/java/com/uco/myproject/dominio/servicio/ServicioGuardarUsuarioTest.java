@@ -9,7 +9,7 @@ import org.mockito.Mockito;
 
 class ServicioGuardarUsuarioTest {
 
-    @Test
+    /*@Test
     void siNombreYaExisteDeberiaRetornarError() {
 
         //arrange
@@ -47,5 +47,5 @@ class ServicioGuardarUsuarioTest {
         Mockito.verify(repositorio, Mockito.times(1)).guardar(persona);
         Assertions.assertEquals(1l, id);
 
-    }
+    }*/
 }
