@@ -10,4 +10,7 @@ public interface RepositorioUsuario {
     Usuario consultarPorId(Long id);
     Long guardar(Usuario usuario);
     boolean existe(Usuario usuario);
+    Long eliminar(Long id);
+    Long modificar(Usuario usuario, Long id);
+
 }

@@ -19,7 +19,7 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
     @Override
     public List<Usuario> listar() {
         List<EntidadUsuario> entidades = this.repositorioUsuarioJpa.findAll();
-        return entidades.stream().map(entidad -> Usuario.of(entidad.getNombre(), entidad.getApellido())).toList();
+        return entidades.stream().map(entidad -> Usuario.of(entidad.getNombre(), entidad.getApellido(), entidad.getCargo(), entidad.getContrasena())).toList();
     }
 
     @Override
@@ -27,20 +27,31 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
 
        return this.repositorioUsuarioJpa
                .findById(id)
-               .map(entidad -> Usuario.of(entidad.getNombre(), entidad.getApellido()))
+               .map(entidad -> Usuario.of(entidad.getNombre(), entidad.getApellido(), entidad.getCargo(), entidad.getContrasena()))
                .orElse(null);
     }
 
     @Override
     public Long guardar(Usuario usuario) {
 
-        EntidadUsuario entidadUsuario = new EntidadUsuario(usuario.getNombre(), usuario.getApellido());
+       /* EntidadUsuario entidadUsuario = new EntidadUsuario(usuario.getNombre(), usuario.getApellido(), usuario.getCargo(), usuario.getContrasena());
 
-        return this.repositorioUsuarioJpa.save(entidadUsuario).getId();
+        return this.repositorioUsuarioJpa.save(entidadUsuario).getId();*/
+        return null;
     }
 
     @Override
     public boolean existe(Usuario usuario) {
         return this.repositorioUsuarioJpa.findByNombreAndApellido(usuario.getNombre(), usuario.getApellido()) != null;
+    }
+
+    @Override
+    public Long eliminar(Long id) {
+        return null;
+    }
+
+    @Override
+    public Long modificar(Usuario usuario, Long id) {
+        return null;
     }
 }

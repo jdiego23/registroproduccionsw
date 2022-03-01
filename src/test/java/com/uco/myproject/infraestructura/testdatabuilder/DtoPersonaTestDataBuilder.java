@@ -6,10 +6,14 @@ public class DtoPersonaTestDataBuilder {
 
     private String nombre;
     private String apellido;
+    private String cargo;
+    private String contrasena;
 
     public DtoPersonaTestDataBuilder() {
         this.nombre = "juan";
         this.apellido = "castaño";
+        this.cargo = "operario";
+        this.contrasena = "asdfghjk";
     }
 
     public DtoPersonaTestDataBuilder conNombre(String nombre) {
@@ -21,8 +25,17 @@ public class DtoPersonaTestDataBuilder {
         this.apellido = apellido;
         return this;
     }
+    public DtoPersonaTestDataBuilder conCargo(String cargo) {
+        this.cargo = cargo;
+        return this;
+    }
+
+    public DtoPersonaTestDataBuilder conContrasena(String contrasena) {
+        this.contrasena = contrasena;
+        return this;
+    }
 
     public DtoUsuario build() {
-        return new DtoUsuario(nombre, apellido);
+        return new DtoUsuario(nombre, apellido, cargo, contrasena);
     }
 }
