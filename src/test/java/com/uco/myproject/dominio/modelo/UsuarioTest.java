@@ -12,9 +12,11 @@ class UsuarioTest {
         //arrange (prepara todos los datos para la prueba)
         String nombre = "juan";
         String apellido = "castaño";
+        String cargo = "operario";
+        String contrasena = "asdfghjkl";
 
         //act (ejecuta el metodo a probar)
-        Usuario usuario = Usuario.of(nombre, apellido);
+        Usuario usuario = Usuario.of(nombre, apellido,cargo,contrasena);
 
         //assert se valida el resultado
 
@@ -29,11 +31,13 @@ class UsuarioTest {
         //arrange (prepara todos los datos para la prueba)
         String nombre = null;
         String apellido = "castaño";
+        String cargo = "operario";
+        String contrasena = "asdfghjkl";
 
         //act - assert (ejecuta el metodo a probar)
 
         Assertions.assertEquals("El nombre no puede ser vacio",Assertions.assertThrows(IllegalArgumentException.class, () ->
-            Usuario.of(nombre, apellido)
+            Usuario.of(nombre, apellido, cargo,contrasena)
         ).getMessage());
     }
 
@@ -44,11 +48,13 @@ class UsuarioTest {
         //arrange (prepara todos los datos para la prueba)
         String nombre = "";
         String apellido = "castaño";
+        String cargo = "operario";
+        String contrasena = "asdfghjkl";
 
         //act - assert (ejecuta el metodo a probar)
 
         Assertions.assertEquals("El nombre no puede ser vacio",Assertions.assertThrows(IllegalArgumentException.class, () ->
-                Usuario.of(nombre, apellido)
+                Usuario.of(nombre, apellido,cargo, contrasena)
         ).getMessage());
     }
 }
