@@ -2,9 +2,6 @@ package com.uco.myproject.dominio.modelo;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.List;
 
 public class ClienteTest {
 

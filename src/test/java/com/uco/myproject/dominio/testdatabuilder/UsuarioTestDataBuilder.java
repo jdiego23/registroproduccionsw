@@ -13,7 +13,7 @@ public class UsuarioTestDataBuilder {
         this.nombre = "juan";
         this.apellido = "valencia";
         this.cargo = "operario";
-        this.contrasena = "assdffg1234";
+        this.contrasena = "Assdffg1234";
     }
 
     public UsuarioTestDataBuilder conNombre(String nombre) {

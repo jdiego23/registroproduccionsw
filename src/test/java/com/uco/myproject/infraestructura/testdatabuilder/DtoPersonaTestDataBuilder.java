@@ -13,7 +13,7 @@ public class DtoPersonaTestDataBuilder {
         this.nombre = "juan";
         this.apellido = "valencia";
         this.cargo = "operario";
-        this.contrasena = "asdfghjks";
+        this.contrasena = "Asdfghjks1234";
     }
 
     public DtoPersonaTestDataBuilder conNombre(String nombre) {
