@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class EntidadUsuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     private String apellido;
@@ -45,23 +45,13 @@ public class EntidadUsuario {
         return contrasena;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setId(Long id) {this.id = id;}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    public void setNombre(String nombre) {this.nombre = nombre;}
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
+    public void setApellido(String apellido) {this.apellido = apellido;}
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
+    public void setCargo(String cargo) {this.cargo = cargo;}
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
+    public void setContrasena(String contrasena) {this.contrasena = contrasena;}
 }

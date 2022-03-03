@@ -16,6 +16,7 @@ public class Usuario {
         UtilTexto.validarObligatorio(cargo, "El cargo no puede ser vacio");
         UtilTexto.validarObligatorio(contrasena, "La contraseña no puede estar vacia");
         UtilTexto.validarLongitudContrasena(contrasena,"La contraseña debe tener como minimo 8 caracteres y maximo 16 caracteres");
+        UtilTexto.caracteresEspecialesClave(contrasena,"La contrasena debe tener minimo una mayuscula y un numero");
         return new Usuario(nombre, apellido, cargo, contrasena);
     }
     private Usuario(String nombre, String apellido, String cargo, String contrasena) {

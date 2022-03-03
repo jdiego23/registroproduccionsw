@@ -24,11 +24,7 @@ public class DtoUsuario {
         return apellido;
     }
 
-    public String getCargo() {
-        return cargo;
-    }
+    public String getCargo() {return cargo;}
 
-    public String getContrasena() {
-        return contrasena;
-    }
+    public String getContrasena() {return contrasena;}
 }

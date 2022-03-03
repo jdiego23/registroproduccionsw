@@ -1,4 +1,4 @@
-package com.uco.myproject.dominio.servicio;
+package com.uco.myproject.dominio.servicio.usuario;
 
 import com.uco.myproject.dominio.puerto.RepositorioUsuario;
 import org.springframework.stereotype.Service;
@@ -21,6 +21,5 @@ public class ServicioEliminarUsuario {
 
         return this.repositorioUsuario.eliminar(codigo);
     }
-
 
 }

@@ -3,7 +3,7 @@ package com.uco.myproject.aplicacion.servicio.usuario;
 import com.uco.myproject.aplicacion.dto.DtoRespuesta;
 import com.uco.myproject.aplicacion.dto.DtoUsuario;
 import com.uco.myproject.dominio.modelo.Usuario;
-import com.uco.myproject.dominio.servicio.ServicioModificarUsuario;
+import com.uco.myproject.dominio.servicio.usuario.ServicioModificarUsuario;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -21,5 +21,4 @@ public class ServicioAplicacionModificarUsuario {
 
         return new DtoRespuesta<>(this.servicioModificarUsuario.ejecutar(usuario, codigo));
     }
-
 }

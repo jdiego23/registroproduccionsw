@@ -1,4 +1,4 @@
-package com.uco.myproject.dominio.servicio;
+package com.uco.myproject.dominio.servicio.usuario;
 
 import com.uco.myproject.dominio.modelo.Usuario;
 import com.uco.myproject.dominio.puerto.RepositorioUsuario;
@@ -22,6 +22,4 @@ public class ServicioModificarUsuario {
 
         return this.repositorioUsuario.modificar(usuario,codigo);
     }
-
-
 }

@@ -1,12 +1,11 @@
 package com.uco.myproject.aplicacion.servicio.usuario;
 
 import com.uco.myproject.aplicacion.dto.DtoRespuesta;
-import com.uco.myproject.dominio.servicio.ServicioEliminarUsuario;
+import com.uco.myproject.dominio.servicio.usuario.ServicioEliminarUsuario;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ServicioAplicacionEliminarUsuario {
-
 
     private final ServicioEliminarUsuario servicioEliminarUsuario;
 
@@ -18,5 +17,4 @@ public class ServicioAplicacionEliminarUsuario {
 
         return new DtoRespuesta<>(this.servicioEliminarUsuario.ejecutar(codigo));
     }
-
 }

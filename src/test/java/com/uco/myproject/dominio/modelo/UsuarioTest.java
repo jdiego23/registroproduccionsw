@@ -13,7 +13,7 @@ class UsuarioTest {
         String nombre = "juan";
         String apellido = "valencia";
         String cargo = "operario";
-        String contrasena = "asdfghjkl";
+        String contrasena = "Asdfghjkl1";
 
         //act (ejecuta el metodo a probar)
         Usuario usuario = Usuario.of(nombre, apellido,cargo,contrasena);
@@ -68,5 +68,18 @@ class UsuarioTest {
         Assertions.assertEquals("La contraseña debe tener como minimo 8 caracteres y maximo 16 caracteres",Assertions.assertThrows(IllegalArgumentException.class, () ->
                 Usuario.of(nombre, apellido,cargo, contrasena)
         ).getMessage());
+    }
+    @Test
+    void validarCaracteresEspeciales()
+    {
+        String nombre = "juan";
+        String apellido = "valencia";
+        String cargo = "operario";
+        String contrasena = "asdfasdfg";
+
+        Assertions.assertEquals("La contrasena debe tener minimo una mayuscula y un numero",Assertions.assertThrows(IllegalArgumentException.class, () ->
+                Usuario.of(nombre, apellido,cargo, contrasena)
+        ).getMessage());
+
     }
 }
