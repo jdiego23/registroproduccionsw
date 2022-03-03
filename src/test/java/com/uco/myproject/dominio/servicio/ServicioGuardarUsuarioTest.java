@@ -9,11 +9,11 @@ import org.mockito.Mockito;
 
 class ServicioGuardarUsuarioTest {
 
-    /*@Test
+    @Test
     void siNombreYaExisteDeberiaRetornarError() {
 
         //arrange
-        var persona = new UsuarioTestDataBuilder().build();
+        var usuario = new UsuarioTestDataBuilder().build();
 
         var repositorio = Mockito.mock(RepositorioUsuario.class);
         var servicio = new ServicioGuardarUsuario(repositorio);
@@ -21,9 +21,9 @@ class ServicioGuardarUsuarioTest {
         Mockito.when(repositorio.existe(Mockito.any())).thenReturn(true);
 
         //act - assert
-        Assertions.assertEquals("Ya existe la persona con los datos ingresados",
+        Assertions.assertEquals("Ya existe el usuario con los datos ingresados",
                 Assertions.assertThrows(IllegalStateException.class, () ->
-            servicio.ejecutar(persona)
+            servicio.ejecutar(usuario)
         ).getMessage());
 
     }
@@ -32,7 +32,7 @@ class ServicioGuardarUsuarioTest {
     void guardarExitoso() {
 
         // arrange
-        var persona = new UsuarioTestDataBuilder().build();
+        var usuario = new UsuarioTestDataBuilder().build();
 
         var repositorio = Mockito.mock(RepositorioUsuario.class);
         var servicio = new ServicioGuardarUsuario(repositorio);
@@ -41,11 +41,11 @@ class ServicioGuardarUsuarioTest {
         Mockito.when(repositorio.guardar(Mockito.any(Usuario.class))).thenReturn(1l);
 
         // act
-        var id = servicio.ejecutar(persona);
+        var id = servicio.ejecutar(usuario);
 
         // assert
-        Mockito.verify(repositorio, Mockito.times(1)).guardar(persona);
+        Mockito.verify(repositorio, Mockito.times(1)).guardar(usuario);
         Assertions.assertEquals(1l, id);
 
-    }*/
+    }
 }

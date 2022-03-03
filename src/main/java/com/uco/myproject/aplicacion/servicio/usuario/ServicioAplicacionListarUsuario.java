@@ -1,4 +1,4 @@
-package com.uco.myproject.aplicacion.servicio;
+package com.uco.myproject.aplicacion.servicio.usuario;
 
 import com.uco.myproject.dominio.modelo.Usuario;
 import com.uco.myproject.dominio.puerto.RepositorioUsuario;
@@ -18,4 +18,6 @@ public class ServicioAplicacionListarUsuario {
     public List<Usuario> ejecutar() {
         return this.repositorioUsuario.listar();
     }
+
+    public Usuario consultar(Long id) {return this.repositorioUsuario.consultarPorId(id);}
 }

@@ -42,7 +42,7 @@ class ControladorUsuarioTest {
     @Autowired
     RepositorioUsuario repositorioUsuario;
 
-   /* @Test
+    @Test
     @DisplayName("Debe crear una persona de forma exitosa y luego fallar al crear la misma")
     void crearDuplicadaTest() throws Exception {
 
@@ -52,15 +52,15 @@ class ControladorUsuarioTest {
         crear(dto);
 
         // act - assert
-        mocMvc.perform(MockMvcRequestBuilders.post("/api/personas")
+        mocMvc.perform(MockMvcRequestBuilders.post("/api/usuarios")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto))
                 )
                 .andExpect(status().isConflict());
-    }*/
+    }
 
 
-    /*@Test
+    @Test
     @DisplayName("Debe crear una persona de forma exitosa y validar que si quedó guardada")
     void crearTest() throws Exception {
 
@@ -73,7 +73,7 @@ class ControladorUsuarioTest {
         // arrange
 
         // act
-        var result = mocMvc.perform(MockMvcRequestBuilders.post("/api/personas")
+        var result = mocMvc.perform(MockMvcRequestBuilders.post("/api/usuarios")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto))
                 )
@@ -91,9 +91,9 @@ class ControladorUsuarioTest {
 
         Assertions.assertEquals(dto.getNombre(), persona.getNombre());
         Assertions.assertEquals(dto.getApellido(), persona.getApellido());
-    }*/
+    }
 
-    /*@Test
+    @Test
     @DisplayName("Debe listar las personas luego de crearlas")
     void listarTest() throws Exception {
 
@@ -101,10 +101,10 @@ class ControladorUsuarioTest {
 
         crear(dto);
 
-        mocMvc.perform(get("/api/personas")
+        mocMvc.perform(get("/api/usuarios")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].nombre", is(dto.getNombre())))
                 .andExpect(jsonPath("$[0].apellido", is(dto.getApellido())));
-    }*/
+    }
 }

@@ -1,4 +1,4 @@
-package com.uco.myproject.aplicacion.servicio;
+package com.uco.myproject.aplicacion.servicio.usuario;
 
 import com.uco.myproject.aplicacion.dto.DtoUsuario;
 import com.uco.myproject.aplicacion.dto.DtoRespuesta;

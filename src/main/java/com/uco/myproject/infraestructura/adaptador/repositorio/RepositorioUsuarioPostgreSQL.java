@@ -5,14 +5,18 @@ import com.uco.myproject.dominio.puerto.RepositorioUsuario;
 import com.uco.myproject.infraestructura.adaptador.entidad.EntidadUsuario;
 import com.uco.myproject.infraestructura.adaptador.repositorio.jpa.RepositorioUsuarioJpa;
 import org.springframework.stereotype.Repository;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-public class RepositorioUsuarioMysql implements RepositorioUsuario {
+public class RepositorioUsuarioPostgreSQL implements RepositorioUsuario {
 
     private final RepositorioUsuarioJpa repositorioUsuarioJpa;
 
-    public RepositorioUsuarioMysql(RepositorioUsuarioJpa repositorioUsuarioJpa) {
+
+    public RepositorioUsuarioPostgreSQL(RepositorioUsuarioJpa repositorioUsuarioJpa) {
         this.repositorioUsuarioJpa = repositorioUsuarioJpa;
     }
 
@@ -34,10 +38,10 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
     @Override
     public Long guardar(Usuario usuario) {
 
-       /* EntidadUsuario entidadUsuario = new EntidadUsuario(usuario.getNombre(), usuario.getApellido(), usuario.getCargo(), usuario.getContrasena());
+       EntidadUsuario entidadUsuario = new EntidadUsuario(usuario.getNombre(), usuario.getApellido(), usuario.getCargo(), usuario.getContrasena());
 
-        return this.repositorioUsuarioJpa.save(entidadUsuario).getId();*/
-        return null;
+        return this.repositorioUsuarioJpa.save(entidadUsuario).getId();
+
     }
 
     @Override
@@ -47,11 +51,19 @@ public class RepositorioUsuarioMysql implements RepositorioUsuario {
 
     @Override
     public Long eliminar(Long id) {
-        return null;
+        this.repositorioUsuarioJpa.deleteById(id);
+        return id;
     }
 
     @Override
     public Long modificar(Usuario usuario, Long id) {
-        return null;
+        repositorioUsuarioJpa.findById(id);
+        EntidadUsuario entidadUsuario = new EntidadUsuario();
+        entidadUsuario.setNombre(usuario.getNombre());
+        entidadUsuario.setApellido(usuario.getApellido());
+        entidadUsuario.setCargo(usuario.getCargo());
+        entidadUsuario.setContrasena(usuario.getContrasena());
+        repositorioUsuarioJpa.save(entidadUsuario);
+        return id;
     }
 }

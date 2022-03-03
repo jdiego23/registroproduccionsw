@@ -11,7 +11,7 @@ class UsuarioTest {
 
         //arrange (prepara todos los datos para la prueba)
         String nombre = "juan";
-        String apellido = "castaño";
+        String apellido = "valencia";
         String cargo = "operario";
         String contrasena = "asdfghjkl";
 
@@ -21,7 +21,7 @@ class UsuarioTest {
         //assert se valida el resultado
 
         Assertions.assertEquals("juan", usuario.getNombre());
-        Assertions.assertEquals("castaño", usuario.getApellido());
+        Assertions.assertEquals("valencia", usuario.getApellido());
     }
 
     @Test
@@ -30,7 +30,7 @@ class UsuarioTest {
 
         //arrange (prepara todos los datos para la prueba)
         String nombre = null;
-        String apellido = "castaño";
+        String apellido = "valencia";
         String cargo = "operario";
         String contrasena = "asdfghjkl";
 
@@ -47,13 +47,25 @@ class UsuarioTest {
 
         //arrange (prepara todos los datos para la prueba)
         String nombre = "";
-        String apellido = "castaño";
+        String apellido = "valencia";
         String cargo = "operario";
         String contrasena = "asdfghjkl";
 
         //act - assert (ejecuta el metodo a probar)
 
         Assertions.assertEquals("El nombre no puede ser vacio",Assertions.assertThrows(IllegalArgumentException.class, () ->
+                Usuario.of(nombre, apellido,cargo, contrasena)
+        ).getMessage());
+    }
+    @Test
+    void validarLongitudContrasena()
+    {
+        String nombre = "juan";
+        String apellido = "valencia";
+        String cargo = "operario";
+        String contrasena = "asdf";
+
+        Assertions.assertEquals("La contraseña debe tener como minimo 8 caracteres y maximo 16 caracteres",Assertions.assertThrows(IllegalArgumentException.class, () ->
                 Usuario.of(nombre, apellido,cargo, contrasena)
         ).getMessage());
     }

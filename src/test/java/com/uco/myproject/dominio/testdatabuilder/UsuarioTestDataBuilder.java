@@ -6,14 +6,14 @@ public class UsuarioTestDataBuilder {
 
     private String nombre;
     private String apellido;
-    private String cargo = "operario";
-    private String contrasena = "asdfghjkl";
+    private String cargo ;
+    private String contrasena ;
 
     public UsuarioTestDataBuilder() {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.cargo = cargo;
-        this.contrasena = contrasena;
+        this.nombre = "juan";
+        this.apellido = "valencia";
+        this.cargo = "operario";
+        this.contrasena = "assdffg1234";
     }
 
     public UsuarioTestDataBuilder conNombre(String nombre) {

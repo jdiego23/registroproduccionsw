@@ -11,9 +11,9 @@ public class DtoPersonaTestDataBuilder {
 
     public DtoPersonaTestDataBuilder() {
         this.nombre = "juan";
-        this.apellido = "castaño";
+        this.apellido = "valencia";
         this.cargo = "operario";
-        this.contrasena = "asdfghjk";
+        this.contrasena = "asdfghjks";
     }
 
     public DtoPersonaTestDataBuilder conNombre(String nombre) {

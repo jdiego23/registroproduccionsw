@@ -1,5 +1,7 @@
 package com.uco.myproject.dominio.modelo;
 
+import com.uco.myproject.dominio.utilitario.UtilTexto;
+
 public class Usuario {
 
     private final String nombre;
@@ -9,26 +11,18 @@ public class Usuario {
 
     public static Usuario of(String nombre, String apellido ,String cargo, String contrasena) {
 
-        validarObligatorio(nombre, "El nombre no puede ser vacio");
-        validarObligatorio(apellido, "El apellido no puede ser vacio");
-        validarObligatorio(cargo, "El cargo no puede ser vacio");
-        validarObligatorio(contrasena, "La contraseña no puede estar vacia");
-
-
+        UtilTexto.validarObligatorio(nombre,"El nombre no puede ser vacio");
+        UtilTexto.validarObligatorio(apellido, "El apellido no puede ser vacio");
+        UtilTexto.validarObligatorio(cargo, "El cargo no puede ser vacio");
+        UtilTexto.validarObligatorio(contrasena, "La contraseña no puede estar vacia");
+        UtilTexto.validarLongitudContrasena(contrasena,"La contraseña debe tener como minimo 8 caracteres y maximo 16 caracteres");
         return new Usuario(nombre, apellido, cargo, contrasena);
     }
-
     private Usuario(String nombre, String apellido, String cargo, String contrasena) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.cargo = cargo;
         this.contrasena = contrasena;
-    }
-
-    private static void validarObligatorio(String valor, String mensaje) {
-        if(valor == null || valor.isBlank()) {
-            throw new IllegalArgumentException(mensaje);
-        }
     }
 
     public String getNombre() {
