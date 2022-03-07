@@ -2,35 +2,35 @@ package com.uco.myproject.infraestructura.testdatabuilder;
 
 import com.uco.myproject.aplicacion.dto.DtoUsuario;
 
-public class DtoPersonaTestDataBuilder {
+public class DtoUsuarioTestDataBuilder {
 
     private String nombre;
     private String apellido;
     private String cargo;
     private String contrasena;
 
-    public DtoPersonaTestDataBuilder() {
+    public DtoUsuarioTestDataBuilder() {
         this.nombre = "juan";
         this.apellido = "valencia";
         this.cargo = "operario";
         this.contrasena = "Asdfghjks1234";
     }
 
-    public DtoPersonaTestDataBuilder conNombre(String nombre) {
+    public DtoUsuarioTestDataBuilder conNombre(String nombre) {
         this.nombre = nombre;
         return this;
     }
 
-    public DtoPersonaTestDataBuilder conApellido(String apellido) {
+    public DtoUsuarioTestDataBuilder conApellido(String apellido) {
         this.apellido = apellido;
         return this;
     }
-    public DtoPersonaTestDataBuilder conCargo(String cargo) {
+    public DtoUsuarioTestDataBuilder conCargo(String cargo) {
         this.cargo = cargo;
         return this;
     }
 
-    public DtoPersonaTestDataBuilder conContrasena(String contrasena) {
+    public DtoUsuarioTestDataBuilder conContrasena(String contrasena) {
         this.contrasena = contrasena;
         return this;
     }

@@ -5,10 +5,8 @@ import com.uco.myproject.dominio.puerto.RepositorioUsuario;
 import com.uco.myproject.infraestructura.adaptador.entidad.EntidadUsuario;
 import com.uco.myproject.infraestructura.adaptador.repositorio.jpa.RepositorioUsuarioJpa;
 import org.springframework.stereotype.Repository;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+
 
 @Repository
 public class RepositorioUsuarioPostgreSQL implements RepositorioUsuario {
@@ -57,6 +55,7 @@ public class RepositorioUsuarioPostgreSQL implements RepositorioUsuario {
 
     @Override
     public Long modificar(Usuario usuario, Long id) {
+
         repositorioUsuarioJpa.findById(id);
         EntidadUsuario entidadUsuario = new EntidadUsuario();
         entidadUsuario.setNombre(usuario.getNombre());
