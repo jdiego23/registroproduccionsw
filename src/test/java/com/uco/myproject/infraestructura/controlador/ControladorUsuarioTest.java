@@ -92,7 +92,7 @@ class ControladorUsuarioTest {
         Assertions.assertEquals(dto.getNombre(), usuario.getNombre());
         Assertions.assertEquals(dto.getApellido(), usuario.getApellido());
         Assertions.assertEquals(dto.getCargo(), usuario.getCargo());
-        Assertions.assertEquals(dto.getContrasena(), usuario.getContrasena());
+
     }
 
     @Test

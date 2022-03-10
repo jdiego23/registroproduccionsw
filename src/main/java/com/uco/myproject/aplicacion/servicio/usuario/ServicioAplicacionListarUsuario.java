@@ -1,5 +1,6 @@
 package com.uco.myproject.aplicacion.servicio.usuario;
 
+import com.uco.myproject.dominio.dto.DtoUsuarioResumen;
 import com.uco.myproject.dominio.modelo.Usuario;
 import com.uco.myproject.dominio.puerto.RepositorioUsuario;
 import org.springframework.stereotype.Component;
@@ -15,9 +16,9 @@ public class ServicioAplicacionListarUsuario {
         this.repositorioUsuario = repositorioUsuario;
     }
 
-    public List<Usuario> ejecutar() {
+    public List<DtoUsuarioResumen> ejecutar() {
         return this.repositorioUsuario.listar();
     }
 
-    public Usuario consultar(Long id) {return this.repositorioUsuario.consultarPorId(id);}
+    public DtoUsuarioResumen consultar(Long id) {return this.repositorioUsuario.consultarPorId(id);}
 }

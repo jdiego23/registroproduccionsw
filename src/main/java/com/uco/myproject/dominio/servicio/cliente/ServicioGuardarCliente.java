@@ -2,7 +2,6 @@ package com.uco.myproject.dominio.servicio.cliente;
 
 import com.uco.myproject.dominio.modelo.Cliente;
 import com.uco.myproject.dominio.puerto.RepositorioCliente;
-import com.uco.myproject.dominio.puerto.RepositorioUsuario;
 import org.springframework.stereotype.Service;
 
 @Service

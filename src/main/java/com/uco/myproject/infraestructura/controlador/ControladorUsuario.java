@@ -6,6 +6,7 @@ import com.uco.myproject.aplicacion.servicio.usuario.ServicioAplicacionListarUsu
 import com.uco.myproject.aplicacion.dto.DtoUsuario;
 import com.uco.myproject.aplicacion.dto.DtoRespuesta;
 import com.uco.myproject.aplicacion.servicio.usuario.ServicioAplicacionModificarUsuario;
+import com.uco.myproject.dominio.dto.DtoUsuarioResumen;
 import com.uco.myproject.dominio.modelo.Usuario;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,12 +29,12 @@ public class ControladorUsuario {
     }
 
     @GetMapping
-    public List<Usuario> listar() {
+    public List<DtoUsuarioResumen> listar() {
         return servicioListarUsuario.ejecutar();
     }
 
     @GetMapping("/{codigo}")
-    public Usuario listar(@PathVariable Long codigo ) {
+    public DtoUsuarioResumen listar(@PathVariable Long codigo ) {
         return servicioListarUsuario.consultar(codigo);
     }
 

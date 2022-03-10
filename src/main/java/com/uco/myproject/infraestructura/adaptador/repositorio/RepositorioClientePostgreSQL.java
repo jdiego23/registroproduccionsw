@@ -51,6 +51,15 @@ public class RepositorioClientePostgreSQL implements RepositorioCliente {
 
     @Override
     public Long modificar(Cliente cliente, Long id) {
-        return null;
+
+        repositorioClienteJpa.findById(id);
+        EntidadCliente entidadCliente = new EntidadCliente();
+        entidadCliente.setId(id);
+        entidadCliente.setNit(cliente.getNit());
+        entidadCliente.setNombre(cliente.getNombre());
+        entidadCliente.setDireccion(cliente.getDireccion());
+        entidadCliente.setPais(cliente.getPais());
+        repositorioClienteJpa.save(entidadCliente);
+        return id;
     }
 }

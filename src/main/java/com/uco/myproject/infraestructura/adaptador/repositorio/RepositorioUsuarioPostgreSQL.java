@@ -1,5 +1,6 @@
 package com.uco.myproject.infraestructura.adaptador.repositorio;
 
+import com.uco.myproject.dominio.dto.DtoUsuarioResumen;
 import com.uco.myproject.dominio.modelo.Usuario;
 import com.uco.myproject.dominio.puerto.RepositorioUsuario;
 import com.uco.myproject.infraestructura.adaptador.entidad.EntidadUsuario;
@@ -19,17 +20,17 @@ public class RepositorioUsuarioPostgreSQL implements RepositorioUsuario {
     }
 
     @Override
-    public List<Usuario> listar() {
+    public List<DtoUsuarioResumen> listar() {
         List<EntidadUsuario> entidades = this.repositorioUsuarioJpa.findAll();
-        return entidades.stream().map(entidad -> Usuario.of(entidad.getNombre(), entidad.getApellido(), entidad.getCargo(), entidad.getContrasena())).toList();
+        return entidades.stream().map(entidad -> new DtoUsuarioResumen(entidad.getNombre(), entidad.getApellido(), entidad.getCargo())).toList();
     }
 
     @Override
-    public Usuario consultarPorId(Long id) {
+    public DtoUsuarioResumen consultarPorId(Long id) {
 
        return this.repositorioUsuarioJpa
                .findById(id)
-               .map(entidad -> Usuario.of(entidad.getNombre(), entidad.getApellido(), entidad.getCargo(), entidad.getContrasena()))
+               .map(entidad -> new DtoUsuarioResumen(entidad.getNombre(), entidad.getApellido(), entidad.getCargo()))
                .orElse(null);
     }
 
@@ -58,6 +59,7 @@ public class RepositorioUsuarioPostgreSQL implements RepositorioUsuario {
 
         repositorioUsuarioJpa.findById(id);
         EntidadUsuario entidadUsuario = new EntidadUsuario();
+        entidadUsuario.setId(id);
         entidadUsuario.setNombre(usuario.getNombre());
         entidadUsuario.setApellido(usuario.getApellido());
         entidadUsuario.setCargo(usuario.getCargo());
