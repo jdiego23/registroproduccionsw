@@ -108,7 +108,6 @@ class ControladorUsuarioTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].nombre", is(dto.getNombre())))
                 .andExpect(jsonPath("$[0].apellido", is(dto.getApellido())))
-                .andExpect(jsonPath("$[0].cargo", is(dto.getCargo())))
-                .andExpect(jsonPath("$[0].contrasena", is(dto.getContrasena())));
+                .andExpect(jsonPath("$[0].cargo", is(dto.getCargo())));
     }
 }
