@@ -51,7 +51,8 @@ public class ControladorClienteTest {
         crear(dto);
 
         // act - assert
-        mocMvc.perform(MockMvcRequestBuilders.post("/api/clientes")
+        mocMvc.perform(MockMvcRequestBuilders.
+                        post("/api/clientes")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto))
                 )

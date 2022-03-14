@@ -1,4 +1,4 @@
-package com.uco.myproject.dominio.testdatabuilder;
+package dominio.testdatabuilder;
 
 import com.uco.myproject.dominio.modelo.Usuario;
 

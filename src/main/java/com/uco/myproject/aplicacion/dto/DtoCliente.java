@@ -1,5 +1,8 @@
 package com.uco.myproject.aplicacion.dto;
 
+import lombok.Getter;
+
+@Getter
 public class DtoCliente {
     private int nit;
     private String nombre;
@@ -15,11 +18,4 @@ public class DtoCliente {
         this.pais = pais;
     }
 
-    public int getNit() {return nit;}
-
-    public String getNombre() {return nombre;}
-
-    public String getDireccion() {return direccion;}
-
-    public String getPais() {return pais;}
 }

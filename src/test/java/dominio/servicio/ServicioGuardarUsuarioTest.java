@@ -1,9 +1,9 @@
-package com.uco.myproject.dominio.servicio;
+package dominio.servicio;
 
 import com.uco.myproject.dominio.modelo.Usuario;
 import com.uco.myproject.dominio.puerto.RepositorioUsuario;
 import com.uco.myproject.dominio.servicio.usuario.ServicioGuardarUsuario;
-import com.uco.myproject.dominio.testdatabuilder.UsuarioTestDataBuilder;
+import dominio.testdatabuilder.UsuarioTestDataBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

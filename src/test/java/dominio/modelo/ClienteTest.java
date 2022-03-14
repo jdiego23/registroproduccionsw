@@ -1,5 +1,6 @@
-package com.uco.myproject.dominio.modelo;
+package dominio.modelo;
 
+import com.uco.myproject.dominio.modelo.Cliente;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
