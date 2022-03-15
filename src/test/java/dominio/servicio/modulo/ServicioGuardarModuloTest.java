@@ -24,7 +24,7 @@ public class ServicioGuardarModuloTest {
         Mockito.when(repositorio.existe(Mockito.any())).thenReturn(true);
 
         Assertions.assertEquals("El componente modulo ya existe",
-                Assertions.assertThrows(IllegalArgumentException.class, () ->
+                Assertions.assertThrows(IllegalStateException.class, () ->
                         servicio.ejecutar(modulo)
                 ).getMessage());
 

@@ -20,7 +20,7 @@ public class ServicioGuardarDriverTest {
         Mockito.when(repositorio.existe(Mockito.any())).thenReturn(true);
 
         Assertions.assertEquals("El componente driver ya existe",
-                Assertions.assertThrows(IllegalArgumentException.class, () ->
+                Assertions.assertThrows(IllegalStateException.class, () ->
                         servicio.ejecutar(driver)
                 ).getMessage());
 
