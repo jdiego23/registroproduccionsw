@@ -7,7 +7,6 @@ import com.uco.myproject.aplicacion.dto.DtoUsuario;
 import com.uco.myproject.aplicacion.dto.DtoRespuesta;
 import com.uco.myproject.aplicacion.servicio.usuario.ServicioAplicacionModificarUsuario;
 import com.uco.myproject.dominio.dto.DtoUsuarioResumen;
-import com.uco.myproject.dominio.modelo.Usuario;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

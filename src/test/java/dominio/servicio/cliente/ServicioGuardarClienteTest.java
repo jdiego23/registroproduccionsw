@@ -1,31 +1,33 @@
-package dominio.servicio;
+package dominio.servicio.cliente;
 
 import com.uco.myproject.dominio.modelo.Usuario;
+import com.uco.myproject.dominio.puerto.RepositorioCliente;
 import com.uco.myproject.dominio.puerto.RepositorioUsuario;
+import com.uco.myproject.dominio.servicio.cliente.ServicioGuardarCliente;
 import com.uco.myproject.dominio.servicio.usuario.ServicioGuardarUsuario;
+import dominio.testdatabuilder.ClienteTestDataBuilder;
 import dominio.testdatabuilder.UsuarioTestDataBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-class ServicioGuardarUsuarioTest {
-
+public class ServicioGuardarClienteTest {
     @Test
     void siNombreYaExisteDeberiaRetornarError() {
 
         //arrange
-        var usuario = new UsuarioTestDataBuilder().build();
+        var cliente = new ClienteTestDataBuilder().build();
 
-        var repositorio = Mockito.mock(RepositorioUsuario.class);
-        var servicio = new ServicioGuardarUsuario(repositorio);
+        var repositorio = Mockito.mock(RepositorioCliente.class);
+        var servicio = new ServicioGuardarCliente(repositorio);
 
         Mockito.when(repositorio.existe(Mockito.any())).thenReturn(true);
 
         //act - assert
-        Assertions.assertEquals("Ya existe el usuario con los datos ingresados",
+        Assertions.assertEquals("Ya existe el Cliente con los datos ingresados",
                 Assertions.assertThrows(IllegalStateException.class, () ->
-            servicio.ejecutar(usuario)
-        ).getMessage());
+                        servicio.ejecutar(cliente)
+                ).getMessage());
 
     }
 

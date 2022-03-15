@@ -17,5 +17,4 @@ public class DtoCliente {
         this.direccion = direccion;
         this.pais = pais;
     }
-
 }

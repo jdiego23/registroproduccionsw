@@ -31,7 +31,7 @@ public class UtilTexto {
 
     public static void caracteresEspecialesClave(String string, String mensaje)
     {
-        if(cadenaAceptePatron(string, PATRON_CONTRASENA) == false)
+        if(!cadenaAceptePatron(string, PATRON_CONTRASENA))
         {
             throw new IllegalArgumentException(mensaje);
         }

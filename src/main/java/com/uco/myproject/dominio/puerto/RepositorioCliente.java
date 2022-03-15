@@ -1,8 +1,6 @@
 package com.uco.myproject.dominio.puerto;
 
 import com.uco.myproject.dominio.modelo.Cliente;
-
-
 import java.util.List;
 
 public interface RepositorioCliente {

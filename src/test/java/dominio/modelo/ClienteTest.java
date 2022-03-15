@@ -4,7 +4,7 @@ import com.uco.myproject.dominio.modelo.Cliente;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class ClienteTest {
+ class ClienteTest {
 
     @Test
     void validarCreacionExitosa() {
