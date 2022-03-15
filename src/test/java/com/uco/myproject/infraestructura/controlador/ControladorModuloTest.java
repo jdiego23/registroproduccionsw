@@ -1,11 +1,11 @@
 package com.uco.myproject.infraestructura.controlador;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.uco.myproject.aplicacion.dto.DtoCliente;
+import com.uco.myproject.aplicacion.dto.DtoModulo;
 import com.uco.myproject.aplicacion.dto.DtoRespuesta;
-import com.uco.myproject.dominio.puerto.RepositorioCliente;
+import com.uco.myproject.dominio.puerto.RepositorioModulo;
 import com.uco.myproject.infraestructura.ApplicationMock;
-import com.uco.myproject.infraestructura.testdatabuilder.DtoClienteTestDataBuilder;
+import com.uco.myproject.infraestructura.testdatabuilder.DtoModuloTestDataBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,6 +20,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
 import static org.hamcrest.core.Is.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -31,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = ApplicationMock.class)
 @ActiveProfiles("test")
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-public class ControladorClienteTest {
+public class ControladorModuloTest {
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -39,20 +40,18 @@ public class ControladorClienteTest {
     private MockMvc mocMvc;
 
     @Autowired
-    RepositorioCliente repositorioCliente;
+    RepositorioModulo repositorioModulo;
 
     @Test
-    @DisplayName("Debe crear un cliente de forma exitosa y luego fallar al crear el mismo")
+    @DisplayName("Debe crear el componente modulo de forma exitosa y luego fallar al crear el mismo")
     void crearDuplicadaTest() throws Exception {
 
-        // arrange
-        var dto = new DtoClienteTestDataBuilder().build();
+        var dto = new DtoModuloTestDataBuilder().build();
 
         crear(dto);
 
-        // act - assert
         mocMvc.perform(MockMvcRequestBuilders.
-                        post("/api/clientes")
+                        post("/api/modulo")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto))
                 )
@@ -60,17 +59,17 @@ public class ControladorClienteTest {
     }
 
     @Test
-    @DisplayName("Debe crear un cliente de forma exitosa y validar que si quedó guardada")
+    @DisplayName("Debe crear un componente modulo de forma exitosa y validar que si quedó guardada")
     void crearTest() throws Exception {
 
-        var dto = new DtoClienteTestDataBuilder().build();
+        var dto = new DtoModuloTestDataBuilder().build();
 
         crear(dto);
     }
 
-    private void crear(DtoCliente dto) throws Exception {
+    private void crear(DtoModulo dto) throws Exception {
 
-        var result = mocMvc.perform(MockMvcRequestBuilders.post("/api/clientes")
+        var result = mocMvc.perform(MockMvcRequestBuilders.post("/api/modulo")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto))
                 )
@@ -83,27 +82,26 @@ public class ControladorClienteTest {
         Long id = respuesta.getValor().longValue();
         Assertions.assertNotNull(id);
 
-        var cliente = repositorioCliente.consultarPorId(id);
+        var modulo = repositorioModulo.consultarPorId(id);
 
-        Assertions.assertEquals(dto.getNombre(), cliente.getNombre());
-        Assertions.assertEquals(dto.getDireccion(), cliente.getDireccion());
-        Assertions.assertEquals(dto.getPais(), cliente.getPais());
+        Assertions.assertEquals(dto.getCodigo(), modulo.getCodigo());
+        Assertions.assertEquals(dto.getDescripcion(), modulo.getDescripcion());
+
     }
 
     @Test
-    @DisplayName("Debe listar los clientes luego de crearlas")
+    @DisplayName("Debe listar los componentes modulo luego de crearlas")
     void listarTest() throws Exception {
 
-        var dto = new DtoClienteTestDataBuilder().build();
+        var dto = new DtoModuloTestDataBuilder().build();
 
         this.crear(dto);
 
-        mocMvc.perform(get("/api/clientes")
+        mocMvc.perform(get("/api/modulo")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].nombre", is(dto.getNombre())))
-                .andExpect(jsonPath("$[0].pais", is(dto.getPais())))
-                .andExpect(jsonPath("$[0].direccion", is(dto.getDireccion())));
+                .andExpect(jsonPath("$[0].codigo", is(dto.getCodigo())))
+                .andExpect(jsonPath("$[0].descripcion", is(dto.getDescripcion())));
     }
 
 }

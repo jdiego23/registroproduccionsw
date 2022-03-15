@@ -2,7 +2,7 @@ package com.uco.myproject.infraestructura.adaptador.repositorio;
 
 import com.uco.myproject.dominio.modelo.Driver;
 import com.uco.myproject.dominio.puerto.RepositorioDriver;
-import com.uco.myproject.infraestructura.adaptador.entidad.EnridadDriver;
+import com.uco.myproject.infraestructura.adaptador.entidad.EntidadDriver;
 import com.uco.myproject.infraestructura.adaptador.repositorio.jpa.RepositorioDriverJpa;
 import org.springframework.stereotype.Repository;
 
@@ -19,7 +19,7 @@ public class RepositorioDriverPostgreSQL implements RepositorioDriver {
 
     @Override
     public List<Driver> listar() {
-        List<EnridadDriver> entidades= this.repositorioDriverJpa.findAll();
+        List<EntidadDriver> entidades= this.repositorioDriverJpa.findAll();
         return entidades.stream().map(entidad -> Driver.of(entidad.getCodigo(), entidad.getDescripcion())).toList();
 
     }
@@ -32,7 +32,7 @@ public class RepositorioDriverPostgreSQL implements RepositorioDriver {
 
     @Override
     public Long guardar(Driver driver) {
-        EnridadDriver entidad = new EnridadDriver(driver.getCodigo(), driver.getDescripcion());
+        EntidadDriver entidad = new EntidadDriver(driver.getCodigo(), driver.getDescripcion());
         return this.repositorioDriverJpa.save(entidad).getId();
     }
 
@@ -50,7 +50,7 @@ public class RepositorioDriverPostgreSQL implements RepositorioDriver {
     @Override
     public Long modificar(Driver driver, Long id) {
        this.repositorioDriverJpa.findById(id);
-       EnridadDriver entidad = new EnridadDriver();
+       EntidadDriver entidad = new EntidadDriver();
        entidad.setCodigo(driver.getCodigo());
        entidad.setDescripcion(driver.getDescripcion());
        entidad.setId(id);

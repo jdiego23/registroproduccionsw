@@ -19,7 +19,6 @@ public class ServicioModificarUsuario {
         if(this.repositorioUsuario.consultarPorId(codigo)== null) {
             throw new IllegalStateException(MENSAJE_NO_EXISTE);
         }
-
         return this.repositorioUsuario.modificar(usuario,codigo);
     }
 }

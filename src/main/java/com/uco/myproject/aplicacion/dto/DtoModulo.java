@@ -3,13 +3,13 @@ package com.uco.myproject.aplicacion.dto;
 import lombok.Getter;
 
 @Getter
-public class DtoDriver {
+public class DtoModulo {
     private int codigo;
     private String descripcion;
 
-    public DtoDriver() {}
+    public DtoModulo() {}
 
-    public DtoDriver(int codigo, String descripcion) {
+    public DtoModulo(int codigo, String descripcion) {
         this.codigo = codigo;
         this.descripcion = descripcion;
     }

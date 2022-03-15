@@ -14,7 +14,7 @@ public class ServicioModificarDriver {
         this.repositorioDriver = repositorioDriver;
     }
 
-    public Long ejecutar(Driver driver,long id)
+    public Long ejecutar(Driver driver,Long id)
     {
         if(this.repositorioDriver.consultarPorId(id)== null)
         {

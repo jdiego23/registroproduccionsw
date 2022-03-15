@@ -13,11 +13,12 @@ public class ServicioGuardarDriver {
     public ServicioGuardarDriver(RepositorioDriver repositorioDriver) {
         this.repositorioDriver = repositorioDriver;
     }
+
     public Long ejecutar(Driver driver)
     {
         if(this.repositorioDriver.existe(driver)== true)
         {
-            throw new IllegalArgumentException(MENSAJE_YA_EXISTE);
+            throw new IllegalStateException(MENSAJE_YA_EXISTE);
         }
         return this.repositorioDriver.guardar(driver);
     }

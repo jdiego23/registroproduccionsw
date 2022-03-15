@@ -1,11 +1,11 @@
 package com.uco.myproject.infraestructura.controlador;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.uco.myproject.aplicacion.dto.DtoCliente;
+import com.uco.myproject.aplicacion.dto.DtoDriver;
 import com.uco.myproject.aplicacion.dto.DtoRespuesta;
-import com.uco.myproject.dominio.puerto.RepositorioCliente;
+import com.uco.myproject.dominio.puerto.RepositorioDriver;
 import com.uco.myproject.infraestructura.ApplicationMock;
-import com.uco.myproject.infraestructura.testdatabuilder.DtoClienteTestDataBuilder;
+import com.uco.myproject.infraestructura.testdatabuilder.DtoDriverTestDataBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = ApplicationMock.class)
 @ActiveProfiles("test")
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-public class ControladorClienteTest {
+public class ControladorDriverTest {
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -39,20 +39,18 @@ public class ControladorClienteTest {
     private MockMvc mocMvc;
 
     @Autowired
-    RepositorioCliente repositorioCliente;
+    RepositorioDriver repositorioDriver;
 
     @Test
-    @DisplayName("Debe crear un cliente de forma exitosa y luego fallar al crear el mismo")
+    @DisplayName("Debe crear un  de forma exitosa y luego fallar al crear el mismo")
     void crearDuplicadaTest() throws Exception {
 
-        // arrange
-        var dto = new DtoClienteTestDataBuilder().build();
+        var dto = new DtoDriverTestDataBuilder().build();
 
         crear(dto);
 
-        // act - assert
         mocMvc.perform(MockMvcRequestBuilders.
-                        post("/api/clientes")
+                        post("/api/driver")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto))
                 )
@@ -60,17 +58,17 @@ public class ControladorClienteTest {
     }
 
     @Test
-    @DisplayName("Debe crear un cliente de forma exitosa y validar que si quedó guardada")
+    @DisplayName("Debe crear un componente driver de forma exitosa y validar que si quedó guardada")
     void crearTest() throws Exception {
 
-        var dto = new DtoClienteTestDataBuilder().build();
+        var dto = new DtoDriverTestDataBuilder().build();
 
         crear(dto);
     }
 
-    private void crear(DtoCliente dto) throws Exception {
+    private void crear(DtoDriver dto) throws Exception {
 
-        var result = mocMvc.perform(MockMvcRequestBuilders.post("/api/clientes")
+        var result = mocMvc.perform(MockMvcRequestBuilders.post("/api/driver")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto))
                 )
@@ -83,27 +81,25 @@ public class ControladorClienteTest {
         Long id = respuesta.getValor().longValue();
         Assertions.assertNotNull(id);
 
-        var cliente = repositorioCliente.consultarPorId(id);
+        var driver = repositorioDriver.consultarPorId(id);
 
-        Assertions.assertEquals(dto.getNombre(), cliente.getNombre());
-        Assertions.assertEquals(dto.getDireccion(), cliente.getDireccion());
-        Assertions.assertEquals(dto.getPais(), cliente.getPais());
+        Assertions.assertEquals(dto.getCodigo(), driver.getCodigo());
+        Assertions.assertEquals(dto.getDescripcion(), driver.getDescripcion());
+
     }
 
     @Test
-    @DisplayName("Debe listar los clientes luego de crearlas")
+    @DisplayName("Debe listar los componentes driver luego de crearlas")
     void listarTest() throws Exception {
 
-        var dto = new DtoClienteTestDataBuilder().build();
+        var dto = new DtoDriverTestDataBuilder().build();
 
         this.crear(dto);
 
-        mocMvc.perform(get("/api/clientes")
+        mocMvc.perform(get("/api/driver")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].nombre", is(dto.getNombre())))
-                .andExpect(jsonPath("$[0].pais", is(dto.getPais())))
-                .andExpect(jsonPath("$[0].direccion", is(dto.getDireccion())));
+                .andExpect(jsonPath("$[0].codigo", is(dto.getCodigo())))
+                .andExpect(jsonPath("$[0].descripcion", is(dto.getDescripcion())));
     }
-
 }
