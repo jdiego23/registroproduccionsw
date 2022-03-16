@@ -50,16 +50,4 @@ class ProductoTest {
                 Producto.of(codigo, nombre, descripcion, modulo, driver)
         ).getMessage());
     }
-    @Test
-    void validarCamposVaciosMOdulo() {
-        int codigo = 1234;
-        String nombre = "Producto 1";
-        String descripcion = "primer producto prueba unitaria";
-        Modulo modulo = Modulo.of(1234, "");
-        Driver driver = Driver.of(1234, "Driver prueba producto");
-
-        Assertions.assertEquals("La descipcion del componete modulo no puede estar vacia",Assertions.assertThrows(IllegalArgumentException.class, () ->
-                Producto.of(codigo, nombre, descripcion, modulo, driver)
-        ).getMessage());
-    }
  }
