@@ -2,12 +2,10 @@ package com.uco.myproject.infraestructura.controlador;
 
 import com.uco.myproject.aplicacion.dto.DtoModulo;
 import com.uco.myproject.aplicacion.dto.DtoRespuesta;
-import com.uco.myproject.aplicacion.dto.DtoUsuario;
 import com.uco.myproject.aplicacion.servicio.modulo.ServicioAplicacionEliminarModulo;
 import com.uco.myproject.aplicacion.servicio.modulo.ServicioAplicacionGuardarModulo;
 import com.uco.myproject.aplicacion.servicio.modulo.ServicioAplicacionListarModulo;
 import com.uco.myproject.aplicacion.servicio.modulo.ServicioAplicacionModificarModulo;
-import com.uco.myproject.dominio.dto.DtoUsuarioResumen;
 import com.uco.myproject.dominio.modelo.Modulo;
 import org.springframework.web.bind.annotation.*;
 

@@ -16,7 +16,7 @@ public class ServicioGuardarModulo {
 
     public Long ejecutar(Modulo modulo)
     {
-        if(this.repositorioModulo.existe(modulo) == true)
+        if(this.repositorioModulo.existe(modulo))
         {
             throw new IllegalStateException(MENSAJE_YA_EXISTE);
         }

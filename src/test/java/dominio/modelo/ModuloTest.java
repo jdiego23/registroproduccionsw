@@ -5,7 +5,7 @@ import com.uco.myproject.dominio.modelo.Modulo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class ModuloTest {
+class ModuloTest {
     @Test
     void validarCreacionExitosa() {
 
@@ -34,7 +34,7 @@ public class ModuloTest {
         int codigo = 1234;
         String descripcion = "";
 
-        Assertions.assertEquals("La descipcion del componete modulo no pude estar vacia",Assertions.assertThrows(IllegalArgumentException.class, () ->
+        Assertions.assertEquals("La descipcion del componete modulo no puede estar vacia",Assertions.assertThrows(IllegalArgumentException.class, () ->
                 Modulo.of(codigo, descripcion)
         ).getMessage());
     }

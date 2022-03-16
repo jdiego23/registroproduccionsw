@@ -18,7 +18,6 @@ public class ServicioEliminarUsuario {
         if(this.repositorioUsuario.consultarPorId(codigo) == null) {
             throw new IllegalStateException(MENSAJE_NO_EXISTE);
         }
-
         return this.repositorioUsuario.eliminar(codigo);
     }
 

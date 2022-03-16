@@ -5,7 +5,7 @@ import com.uco.myproject.dominio.modelo.Usuario;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class DriverTest {
+class DriverTest {
 
     @Test
     void validarCreacionExitosa() {

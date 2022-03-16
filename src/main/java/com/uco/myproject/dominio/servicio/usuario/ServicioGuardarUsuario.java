@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ServicioGuardarUsuario {
-
     private static final String MENSAJE_YA_EXISTE = "Ya existe el usuario con los datos ingresados";
 
     private final RepositorioUsuario repositorioUsuario;

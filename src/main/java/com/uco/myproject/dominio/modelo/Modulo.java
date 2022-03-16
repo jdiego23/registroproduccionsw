@@ -9,7 +9,7 @@ public class Modulo {
 
     public static Modulo of(int codigo, String descripcion) {
         UtilNumero.numeroDiferenteCero(codigo,"El codigo del componente modulo no puede ser cero");
-        UtilTexto.validarObligatorio(descripcion,"La descipcion del componete modulo no pude estar vacia");
+        UtilTexto.validarObligatorio(descripcion,"La descipcion del componete modulo no puede estar vacia");
         return new Modulo(codigo, descripcion);
     }
 

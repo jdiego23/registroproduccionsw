@@ -14,7 +14,7 @@ import org.mockito.Mockito;
 
 public class ServicioGuardarModuloTest {
     @Test
-    void siDriverYaExisteDeberiaRetornarError() {
+    void siModuloYaExisteDeberiaRetornarError() {
 
         var modulo = new ModuloTestDataBuilder().build();
 

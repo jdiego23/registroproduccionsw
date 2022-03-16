@@ -16,7 +16,7 @@ public class ServicioGuardarDriver {
 
     public Long ejecutar(Driver driver)
     {
-        if(this.repositorioDriver.existe(driver)== true)
+        if(this.repositorioDriver.existe(driver))
         {
             throw new IllegalStateException(MENSAJE_YA_EXISTE);
         }

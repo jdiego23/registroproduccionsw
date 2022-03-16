@@ -18,7 +18,7 @@ public class ServicioEliminarModulo {
     {
         if(this.repositorioModulo.consultarPorId(id) == null)
         {
-            throw new IllegalArgumentException(MENSAJE_NO_EXISTE);
+            throw new IllegalStateException(MENSAJE_NO_EXISTE);
         }
         return repositorioModulo.eliminar(id);
     }

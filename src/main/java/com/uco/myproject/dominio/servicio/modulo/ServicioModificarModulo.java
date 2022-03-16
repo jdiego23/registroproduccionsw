@@ -20,6 +20,6 @@ public class ServicioModificarModulo {
         {
             throw new IllegalArgumentException(MENSAJA_NO_EXISTE);
         }
-        return repositorioModulo.modificar(modulo, id);
+        return this.repositorioModulo.modificar(modulo, id);
     }
 }

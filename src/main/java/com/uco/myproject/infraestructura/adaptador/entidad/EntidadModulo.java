@@ -16,7 +16,6 @@ public class EntidadModulo {
     private int codigo;
     private String descripcion;
 
-
     public EntidadModulo() {
     }
 
@@ -24,5 +23,4 @@ public class EntidadModulo {
         this.codigo = codigo;
         this.descripcion = descripcion;
     }
-
 }
