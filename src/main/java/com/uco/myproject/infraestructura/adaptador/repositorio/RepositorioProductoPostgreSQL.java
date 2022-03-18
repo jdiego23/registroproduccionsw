@@ -29,7 +29,8 @@ public class RepositorioProductoPostgreSQL implements RepositorioProducto {
     @Override
     public List<Producto> listar() {
         List<EntidadProducto> entidades = repositorioProductoJpa.findAll();
-        return entidades.stream().map(entidad-> Producto.of(entidad.getCodigo(), entidad.getNombre(),entidad.getDescripcion(), Modulo.of(entidad.getModulo().getCodigo(),entidad.getModulo().getDescripcion()),
+        return entidades.stream().map(entidad-> Producto.of(entidad.getCodigo(), entidad.getNombre(),entidad.getDescripcion(),
+                Modulo.of(entidad.getModulo().getCodigo(),entidad.getModulo().getDescripcion()),
                 Driver.of(entidad.getDriver().getCodigo(),entidad.getDriver().getDescripcion()))).toList();
 
     }
@@ -68,11 +69,18 @@ public class RepositorioProductoPostgreSQL implements RepositorioProducto {
     public Long modificar(Producto producto, Long id) {
 
         repositorioProductoJpa.findById(id);
+        EntidadDriver entidadDriver = repositorioDriverJpa.findByDescripcion(producto.getModulo().getDescripcion());
+        EntidadModulo entidadModulo = repositorioModuloJpa.findByDescripcion(producto.getModulo().getDescripcion());
+
+
         EntidadProducto entidadProducto = new EntidadProducto();
         entidadProducto.setId(id);
         entidadProducto.setCodigo(producto.getCodigo());
         entidadProducto.setNombre(producto.getNombre());
         entidadProducto.setDescripcion(producto.getDescripcion());
+        entidadProducto.setDriver(entidadDriver);
+        entidadProducto.setModulo(entidadModulo);
+
         repositorioProductoJpa.save(entidadProducto);
         return id;
     }

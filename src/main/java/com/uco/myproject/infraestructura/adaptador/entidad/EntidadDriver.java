@@ -19,7 +19,7 @@ public class EntidadDriver {
     public EntidadDriver() {}
 
     public EntidadDriver(int codigo, String descripcion) {
-        this.id = id;
+
         this.codigo = codigo;
         this.descripcion = descripcion;
     }

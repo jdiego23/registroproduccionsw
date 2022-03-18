@@ -21,7 +21,6 @@ public class EntidadUsuario {
     public EntidadUsuario() {}
 
     public EntidadUsuario(String nombre, String apellido, String cargo, String contrasena) {
-        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.cargo = cargo;

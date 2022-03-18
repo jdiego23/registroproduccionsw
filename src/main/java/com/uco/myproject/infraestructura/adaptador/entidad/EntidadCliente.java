@@ -20,7 +20,6 @@ public class EntidadCliente {
     public EntidadCliente() {}
 
     public EntidadCliente(int nit, String nombre, String direccion, String pais) {
-        this.id = id;
         this.nit = nit;
         this.nombre = nombre;
         this.direccion = direccion;
