@@ -50,8 +50,6 @@ public class RepositorioPedidoPostgreSQL implements RepositorioPedido {
 
     @Override
     public Long guardar(Pedido pedido) {
-        EntidadModulo entidadModulo = this.repositorioModuloJpa.findByDescripcion(pedido.getProducto().getModulo().getDescripcion());
-        EntidadDriver entidadDriver =this.repositorioDriverJpa.findByDescripcion(pedido.getProducto().getDriver().getDescripcion());
         EntidadProducto entidadProducto = this.repositorioProductoJpa.findByNombreAndDescripcion(pedido.getProducto().getNombre(),pedido.getProducto().getDescripcion());
         EntidadCliente entidadCliente = this.repositorioClienteJpa.findByNombreAndDireccion(pedido.getCliente().getNombre(),pedido.getCliente().getDireccion());
 

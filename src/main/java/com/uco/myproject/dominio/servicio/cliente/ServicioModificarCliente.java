@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ServicioModificarCliente {
-    private static final String MENSAJE_YA_EXISTE = "Ya existe el Cliente con los datos ingresados";
+    private static final String MENSAJE_YA_EXISTE = "No existe el Cliente con los datos ingresados";
 
     private final RepositorioCliente repositorioCliente;
 

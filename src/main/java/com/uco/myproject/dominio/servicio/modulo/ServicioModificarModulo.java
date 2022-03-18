@@ -18,7 +18,7 @@ public class ServicioModificarModulo {
     {
         if(this.repositorioModulo.consultarPorId(id) == null)
         {
-            throw new IllegalArgumentException(MENSAJA_NO_EXISTE);
+            throw new IllegalStateException(MENSAJA_NO_EXISTE);
         }
         return this.repositorioModulo.modificar(modulo, id);
     }

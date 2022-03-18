@@ -18,7 +18,7 @@ public class ServicioModificarDriver {
     {
         if(this.repositorioDriver.consultarPorId(id)== null)
         {
-            throw new IllegalArgumentException(MENSAJA_NO_EXISTE);
+            throw new IllegalStateException(MENSAJA_NO_EXISTE);
         }
         return this.repositorioDriver.modificar(driver,id);
     }
