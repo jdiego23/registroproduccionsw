@@ -16,6 +16,7 @@ import java.util.List;
 
 @Repository
 public class RepositorioProductoPostgreSQL implements RepositorioProducto {
+    private static final String MENSAJE_NO_EXISTE = "No existe el pedido con los datos ingresados";
     private final RepositorioProductoJpa repositorioProductoJpa;
     private final RepositorioModuloJpa repositorioModuloJpa;
     private final RepositorioDriverJpa repositorioDriverJpa;
@@ -48,6 +49,10 @@ public class RepositorioProductoPostgreSQL implements RepositorioProducto {
     public Long guardar(Producto producto) {
         EntidadModulo entidadModulo = this.repositorioModuloJpa.findByDescripcion(producto.getModulo().getDescripcion());
         EntidadDriver entidadDriver =this.repositorioDriverJpa.findByDescripcion(producto.getDriver().getDescripcion());
+        if(entidadDriver == null || entidadModulo == null)
+        {
+            throw new IllegalStateException();
+        }
 
         EntidadProducto entidad = new EntidadProducto(producto.getCodigo(), producto.getNombre(),producto.getDescripcion()
                 , entidadModulo, entidadDriver);
@@ -69,8 +74,8 @@ public class RepositorioProductoPostgreSQL implements RepositorioProducto {
     public Long modificar(Producto producto, Long id) {
 
         repositorioProductoJpa.findById(id);
-        EntidadDriver entidadDriver = repositorioDriverJpa.findByDescripcion(producto.getModulo().getDescripcion());
-        EntidadModulo entidadModulo = repositorioModuloJpa.findByDescripcion(producto.getModulo().getDescripcion());
+        EntidadDriver entidadDriver =this.repositorioDriverJpa.findByDescripcion(producto.getDriver().getDescripcion());
+        EntidadModulo entidadModulo = this.repositorioModuloJpa.findByDescripcion(producto.getModulo().getDescripcion());
 
 
         EntidadProducto entidadProducto = new EntidadProducto();
@@ -78,8 +83,10 @@ public class RepositorioProductoPostgreSQL implements RepositorioProducto {
         entidadProducto.setCodigo(producto.getCodigo());
         entidadProducto.setNombre(producto.getNombre());
         entidadProducto.setDescripcion(producto.getDescripcion());
-        entidadProducto.setDriver(entidadDriver);
+
         entidadProducto.setModulo(entidadModulo);
+
+        entidadProducto.setDriver(entidadDriver);
 
         repositorioProductoJpa.save(entidadProducto);
         return id;

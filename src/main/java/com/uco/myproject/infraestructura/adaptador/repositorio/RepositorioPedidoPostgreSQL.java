@@ -50,6 +50,7 @@ public class RepositorioPedidoPostgreSQL implements RepositorioPedido {
 
     @Override
     public Long guardar(Pedido pedido) {
+
         EntidadProducto entidadProducto = this.repositorioProductoJpa.findByNombreAndDescripcion(pedido.getProducto().getNombre(),pedido.getProducto().getDescripcion());
         EntidadCliente entidadCliente = this.repositorioClienteJpa.findByNombreAndDireccion(pedido.getCliente().getNombre(),pedido.getCliente().getDireccion());
 
@@ -72,11 +73,19 @@ public class RepositorioPedidoPostgreSQL implements RepositorioPedido {
     @Override
     public Long modificar(Pedido pedido, Long id) {
         repositorioPedidoJpa.findById(id);
+        EntidadProducto entidadProducto = this.repositorioProductoJpa.findByNombreAndDescripcion(pedido.getProducto().getNombre(),pedido.getProducto().getDescripcion());
+        EntidadCliente entidadCliente = this.repositorioClienteJpa.findByNombreAndDireccion(pedido.getCliente().getNombre(),pedido.getCliente().getDireccion());
 
         EntidadPedido entidadPedido = new EntidadPedido();
         entidadPedido.setId(id);
         entidadPedido.setNumero(pedido.getNumero());
         entidadPedido.setCantidad(pedido.getCantidad());
+
+        entidadPedido.setCliente(entidadCliente);
+
+        entidadPedido.setProducto(entidadProducto);
+
+
         repositorioPedidoJpa.save(entidadPedido);
         return id;
     }

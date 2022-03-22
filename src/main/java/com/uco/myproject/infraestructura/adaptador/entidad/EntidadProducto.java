@@ -22,7 +22,7 @@ public class EntidadProducto {
     private EntidadModulo modulo;
 
     @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "Driver_id")
+    @JoinColumn(name = "driver_id")
     private EntidadDriver driver;
 
     public EntidadProducto() {

@@ -55,6 +55,6 @@ public class RepositorioDriverPostgreSQL implements RepositorioDriver {
        entidad.setDescripcion(driver.getDescripcion());
        entidad.setId(id);
        repositorioDriverJpa.save(entidad);
-        return null;
+        return id;
     }
 }
