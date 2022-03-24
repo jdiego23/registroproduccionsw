@@ -16,7 +16,7 @@ import java.util.List;
 
 @Repository
 public class RepositorioProductoPostgreSQL implements RepositorioProducto {
-    private static final String MENSAJE_NO_EXISTE = "No existe el pedido con los datos ingresados";
+    private static final String MENSAJE_NO_EXISTE = "No existe algunos de los componentes con los datos ingresados";
     private final RepositorioProductoJpa repositorioProductoJpa;
     private final RepositorioModuloJpa repositorioModuloJpa;
     private final RepositorioDriverJpa repositorioDriverJpa;
@@ -51,7 +51,7 @@ public class RepositorioProductoPostgreSQL implements RepositorioProducto {
         EntidadDriver entidadDriver =this.repositorioDriverJpa.findByDescripcion(producto.getDriver().getDescripcion());
         if(entidadDriver == null || entidadModulo == null)
         {
-            throw new IllegalStateException();
+            throw new IllegalStateException(MENSAJE_NO_EXISTE);
         }
 
         EntidadProducto entidad = new EntidadProducto(producto.getCodigo(), producto.getNombre(),producto.getDescripcion()
@@ -77,6 +77,10 @@ public class RepositorioProductoPostgreSQL implements RepositorioProducto {
         EntidadDriver entidadDriver =this.repositorioDriverJpa.findByDescripcion(producto.getDriver().getDescripcion());
         EntidadModulo entidadModulo = this.repositorioModuloJpa.findByDescripcion(producto.getModulo().getDescripcion());
 
+        if(entidadDriver == null || entidadModulo == null)
+        {
+            throw new IllegalStateException(MENSAJE_NO_EXISTE);
+        }
 
         EntidadProducto entidadProducto = new EntidadProducto();
         entidadProducto.setId(id);
