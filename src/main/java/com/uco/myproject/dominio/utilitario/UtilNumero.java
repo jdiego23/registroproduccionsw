@@ -9,4 +9,12 @@ public class UtilNumero {
             throw new IllegalArgumentException(mensaje);
         }
     }
+    public static void numeroNoPuedeSerNegativo(int numero,String mensaje)
+    {
+        if(numero < 0)
+        {
+            throw new IllegalArgumentException(mensaje);
+        }
+    }
+
 }

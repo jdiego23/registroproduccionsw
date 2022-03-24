@@ -53,7 +53,7 @@ public class RepositorioPedidoPostgreSQL implements RepositorioPedido {
 
         EntidadProducto entidadProducto = this.repositorioProductoJpa.findByNombreAndDescripcion(pedido.getProducto().getNombre(),pedido.getProducto().getDescripcion());
         EntidadCliente entidadCliente = this.repositorioClienteJpa.findByNombreAndDireccion(pedido.getCliente().getNombre(),pedido.getCliente().getDireccion());
-        if(entidadProducto == null || entidadProducto == null)
+        if(entidadProducto == null || entidadCliente == null)
         {
             throw new IllegalStateException(MENSAJE_NO_EXISTE);
         }
@@ -80,7 +80,7 @@ public class RepositorioPedidoPostgreSQL implements RepositorioPedido {
         EntidadProducto entidadProducto = this.repositorioProductoJpa.findByNombreAndDescripcion(pedido.getProducto().getNombre(),pedido.getProducto().getDescripcion());
         EntidadCliente entidadCliente = this.repositorioClienteJpa.findByNombreAndDireccion(pedido.getCliente().getNombre(),pedido.getCliente().getDireccion());
 
-        if(entidadProducto == null || entidadProducto == null)
+        if(entidadProducto == null || entidadCliente == null)
         {
             throw new IllegalStateException(MENSAJE_NO_EXISTE);
         }

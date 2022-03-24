@@ -8,18 +8,15 @@ class UsuarioTest {
 
     @Test
     void validarCreacionExitosa() {
-        //patron 3a
 
-        //arrange (prepara todos los datos para la prueba)
         String nombre = "juan";
         String apellido = "valencia";
         String cargo = "operario";
         String contrasena = "Asdfghjkl1";
 
-        //act (ejecuta el metodo a probar)
+
         Usuario usuario = Usuario.of(nombre, apellido,cargo,contrasena);
 
-        //assert se valida el resultado
 
         Assertions.assertEquals("juan", usuario.getNombre());
         Assertions.assertEquals("valencia", usuario.getApellido());
@@ -27,15 +24,12 @@ class UsuarioTest {
 
     @Test
     void validarCamposFaltantes() {
-        //patron 3a
 
-        //arrange (prepara todos los datos para la prueba)
         String nombre = null;
         String apellido = "valencia";
         String cargo = "operario";
         String contrasena = "asdfghjkl";
 
-        //act - assert (ejecuta el metodo a probar)
 
         Assertions.assertEquals("El nombre no puede ser vacio",Assertions.assertThrows(IllegalArgumentException.class, () ->
             Usuario.of(nombre, apellido, cargo,contrasena)
@@ -44,15 +38,11 @@ class UsuarioTest {
 
     @Test
     void validarCamposVacios() {
-        //patron 3a
 
-        //arrange (prepara todos los datos para la prueba)
         String nombre = "";
         String apellido = "valencia";
         String cargo = "operario";
         String contrasena = "asdfghjkl";
-
-        //act - assert (ejecuta el metodo a probar)
 
         Assertions.assertEquals("El nombre no puede ser vacio",Assertions.assertThrows(IllegalArgumentException.class, () ->
                 Usuario.of(nombre, apellido,cargo, contrasena)

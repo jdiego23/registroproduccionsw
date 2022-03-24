@@ -45,4 +45,21 @@ class PedidoTest {
                  Pedido.of(numero,cliente,producto,cantidad)
          ).getMessage());
         }
+    @Test
+    void validarCantidadNegativa() {
+        int numero = 1;
+        Cliente cliente;
+        Producto producto;
+        int cantidad = -3;
+        cliente = Cliente.of(1234,"uco","Cra. 46 # 40B-50, Rionegro, Antioquia","Colombia");
+        Modulo modulo = Modulo.of(1234, "Modulo prueba producto");
+        Driver driver = Driver.of(1234, "Driver prueba producto");
+        producto = Producto.of(1234, "Producto 1", "primer producto prueba unitaria", modulo, driver);
+
+
+        Assertions.assertEquals("La cantidad del pedido no puede ser negativa",Assertions.assertThrows(IllegalArgumentException.class, () ->
+                Pedido.of(numero,cliente,producto,cantidad)
+        ).getMessage());
+    }
+
 }

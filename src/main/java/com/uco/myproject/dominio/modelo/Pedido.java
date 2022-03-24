@@ -11,6 +11,7 @@ public class Pedido {
     public static Pedido of(int numero, Cliente cliente, Producto producto, int cantidad) {
         UtilNumero.numeroDiferenteCero(numero,"El numero del pedido no puede ser cero");
         UtilNumero.numeroDiferenteCero(cantidad,"La catidad del del pedido no puede ser cero");
+        UtilNumero.numeroNoPuedeSerNegativo(cantidad,"La cantidad del pedido no puede ser negativa");
         return new Pedido(numero, cliente, producto, cantidad);
     }
 
