@@ -10,8 +10,8 @@ public class DtoUsuarioTestDataBuilder {
     private String contrasena;
 
     public DtoUsuarioTestDataBuilder() {
-        this.nombre = "juan";
-        this.apellido = "valencia";
+        this.nombre = "Juan";
+        this.apellido = "Valencia";
         this.cargo = "operario";
         this.contrasena = "Asdfghjks1234";
     }

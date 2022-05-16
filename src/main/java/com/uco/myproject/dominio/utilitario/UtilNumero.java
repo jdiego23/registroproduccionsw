@@ -2,7 +2,7 @@ package com.uco.myproject.dominio.utilitario;
 
 public class UtilNumero {
 
-    public static void numeroDiferenteCero(int numero,String mensaje)
+    public static void numeroDiferenteCero(int numero, String mensaje)
     {
         if(numero==0)
         {
@@ -16,5 +16,4 @@ public class UtilNumero {
             throw new IllegalArgumentException(mensaje);
         }
     }
-
 }

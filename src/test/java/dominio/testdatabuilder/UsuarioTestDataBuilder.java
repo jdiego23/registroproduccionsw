@@ -1,6 +1,10 @@
 package dominio.testdatabuilder;
 
+import com.uco.myproject.dominio.modelo.RolUsuario;
 import com.uco.myproject.dominio.modelo.Usuario;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class UsuarioTestDataBuilder {
 
@@ -8,12 +12,14 @@ public class UsuarioTestDataBuilder {
     private String apellido;
     private String cargo ;
     private String contrasena ;
+    List<RolUsuario> roles = Arrays.asList(RolUsuario.of("EMPLEADO"));
 
     public UsuarioTestDataBuilder() {
         this.nombre = "juan";
         this.apellido = "valencia";
         this.cargo = "operario";
         this.contrasena = "Assdffg1234";
+
     }
 
     public UsuarioTestDataBuilder conNombre(String nombre) {
@@ -38,6 +44,6 @@ public class UsuarioTestDataBuilder {
 
 
     public Usuario build() {
-        return Usuario.of(nombre, apellido, cargo, contrasena);
+        return Usuario.of(nombre, apellido, cargo, contrasena,roles);
     }
 }

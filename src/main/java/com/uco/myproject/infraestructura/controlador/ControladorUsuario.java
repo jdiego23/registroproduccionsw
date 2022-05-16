@@ -7,10 +7,11 @@ import com.uco.myproject.aplicacion.dto.DtoUsuario;
 import com.uco.myproject.aplicacion.dto.DtoRespuesta;
 import com.uco.myproject.aplicacion.servicio.usuario.ServicioAplicacionModificarUsuario;
 import com.uco.myproject.dominio.dto.DtoUsuarioResumen;
+import com.uco.myproject.infraestructura.aspectos.SecuredResource;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/usuarios")
 public class ControladorUsuario {
@@ -28,11 +29,13 @@ public class ControladorUsuario {
     }
 
     @GetMapping
+    @SecuredResource(name = "EMPLEADO")
     public List<DtoUsuarioResumen> listar() {
         return servicioListarUsuario.ejecutar();
     }
 
     @GetMapping("/{codigo}")
+    @SecuredResource(name = "EMPLEADO")
     public DtoUsuarioResumen listar(@PathVariable Long codigo ) {
         return servicioListarUsuario.consultar(codigo);
     }

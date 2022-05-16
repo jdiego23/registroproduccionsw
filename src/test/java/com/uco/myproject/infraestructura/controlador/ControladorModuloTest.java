@@ -1,10 +1,12 @@
 package com.uco.myproject.infraestructura.controlador;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.uco.myproject.aplicacion.dto.DtoLogin;
 import com.uco.myproject.aplicacion.dto.DtoModulo;
 import com.uco.myproject.aplicacion.dto.DtoRespuesta;
 import com.uco.myproject.dominio.puerto.RepositorioModulo;
 import com.uco.myproject.infraestructura.ApplicationMock;
+import com.uco.myproject.infraestructura.testdatabuilder.DtoLoginTestDataBuilder;
 import com.uco.myproject.infraestructura.testdatabuilder.DtoModuloTestDataBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -47,12 +49,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
     void crearDuplicadaTest() throws Exception {
 
         var dto = new DtoModuloTestDataBuilder().build();
+        String token = obtenerToken();
 
-        crear(dto);
+        crear(dto, token);
 
         mocMvc.perform(MockMvcRequestBuilders.
                         post("/api/modulo")
                         .contentType(MediaType.APPLICATION_JSON)
+                        .header("Authorization",token)
                         .content(objectMapper.writeValueAsString(dto))
                 )
                 .andExpect(status().isConflict());
@@ -63,14 +67,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
     void crearTest() throws Exception {
 
         var dto = new DtoModuloTestDataBuilder().build();
+        String token = obtenerToken();
 
-        crear(dto);
+
     }
 
-    private void crear(DtoModulo dto) throws Exception {
+    private void crear(DtoModulo dto,String token) throws Exception {
 
         var result = mocMvc.perform(MockMvcRequestBuilders.post("/api/modulo")
                         .contentType(MediaType.APPLICATION_JSON)
+                        .header("Authorization",token)
                         .content(objectMapper.writeValueAsString(dto))
                 )
                 .andExpect(status().isOk())
@@ -94,14 +100,27 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
     void listarTest() throws Exception {
 
         var dto = new DtoModuloTestDataBuilder().build();
+        String token = obtenerToken();
 
-        this.crear(dto);
+        this.crear(dto,token);
 
         mocMvc.perform(get("/api/modulo")
-                        .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("Authorization",token))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].codigo", is(dto.getCodigo())))
                 .andExpect(jsonPath("$[0].descripcion", is(dto.getDescripcion())));
+    }
+    private String obtenerToken() throws Exception {
+        DtoLogin login = new DtoLoginTestDataBuilder().build();
+        var resultLogin = mocMvc.perform(MockMvcRequestBuilders.post("/api/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(login))
+                )
+                .andExpect(status().isOk())
+                .andReturn();
+
+        return (String) objectMapper.readValue(resultLogin.getResponse().getContentAsString(), DtoRespuesta.class).getValor();
     }
 
 }

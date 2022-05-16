@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -17,13 +19,18 @@ public class EntidadUsuario {
     private String apellido;
     private String cargo;
     private String contrasena;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name= "id_usuario")
+    private List<EntidadRolUsuario> roles;
 
     public EntidadUsuario() {}
 
-    public EntidadUsuario(String nombre, String apellido, String cargo, String contrasena) {
+    public EntidadUsuario(String nombre, String apellido, String cargo, String contrasena, List<EntidadRolUsuario> roles) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.cargo = cargo;
         this.contrasena = contrasena;
+        this.roles = roles;
     }
+
 }

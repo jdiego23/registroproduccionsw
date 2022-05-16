@@ -1,10 +1,12 @@
 package com.uco.myproject.infraestructura.controlador;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.uco.myproject.aplicacion.dto.DtoLogin;
 import com.uco.myproject.aplicacion.dto.DtoUsuario;
 import com.uco.myproject.aplicacion.dto.DtoRespuesta;
 import com.uco.myproject.dominio.puerto.RepositorioUsuario;
 import com.uco.myproject.infraestructura.ApplicationMock;
+import com.uco.myproject.infraestructura.testdatabuilder.DtoLoginTestDataBuilder;
 import com.uco.myproject.infraestructura.testdatabuilder.DtoUsuarioTestDataBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -49,11 +51,13 @@ class ControladorUsuarioTest {
         // arrange
         var dto = new DtoUsuarioTestDataBuilder().build();
 
-        crear(dto);
+        String token = obtenerToken();
+        crear(dto, token);
 
         // act - assert
         mocMvc.perform(MockMvcRequestBuilders.post("/api/usuarios")
                         .contentType(MediaType.APPLICATION_JSON)
+                        .header("Authorization",token)
                         .content(objectMapper.writeValueAsString(dto))
                 )
                 .andExpect(status().isConflict());
@@ -66,15 +70,18 @@ class ControladorUsuarioTest {
 
         var dto = new DtoUsuarioTestDataBuilder().build();
 
-        crear(dto);
+        String token = obtenerToken();
+
+        crear(dto, token);
     }
 
-    private void crear(DtoUsuario dto) throws Exception {
+    private void crear(DtoUsuario dto, String token) throws Exception {
         // arrange
 
         // act
         var result = mocMvc.perform(MockMvcRequestBuilders.post("/api/usuarios")
                         .contentType(MediaType.APPLICATION_JSON)
+                        .header("Authorization",token)
                         .content(objectMapper.writeValueAsString(dto))
                 )
                 .andExpect(status().isOk())
@@ -101,13 +108,28 @@ class ControladorUsuarioTest {
 
         var dto = new DtoUsuarioTestDataBuilder().build();
 
-        crear(dto);
+        String token = obtenerToken();
+
+        crear(dto,token);
 
         mocMvc.perform(get("/api/usuarios")
-                        .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("Authorization",token))
+
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].nombre", is(dto.getNombre())))
                 .andExpect(jsonPath("$[0].apellido", is(dto.getApellido())))
                 .andExpect(jsonPath("$[0].cargo", is(dto.getCargo())));
+    }
+
+    private String obtenerToken() throws Exception {
+        DtoLogin login = new DtoLoginTestDataBuilder().build();
+        var resultLogin = mocMvc.perform(MockMvcRequestBuilders.post("/api/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(login))
+                )
+                .andExpect(status().isOk())
+                .andReturn();
+
+        return (String) objectMapper.readValue(resultLogin.getResponse().getContentAsString(), DtoRespuesta.class).getValor();
     }
 }

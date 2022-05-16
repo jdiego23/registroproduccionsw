@@ -2,10 +2,12 @@ package com.uco.myproject.infraestructura.controlador;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uco.myproject.aplicacion.dto.DtoCliente;
+import com.uco.myproject.aplicacion.dto.DtoLogin;
 import com.uco.myproject.aplicacion.dto.DtoRespuesta;
 import com.uco.myproject.dominio.puerto.RepositorioCliente;
 import com.uco.myproject.infraestructura.ApplicationMock;
 import com.uco.myproject.infraestructura.testdatabuilder.DtoClienteTestDataBuilder;
+import com.uco.myproject.infraestructura.testdatabuilder.DtoLoginTestDataBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -48,12 +50,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         // arrange
         var dto = new DtoClienteTestDataBuilder().build();
 
-        crear(dto);
+        String token = obtenerToken();
+
+        crear(dto, token);
 
         // act - assert
         mocMvc.perform(MockMvcRequestBuilders.
                         post("/api/clientes")
                         .contentType(MediaType.APPLICATION_JSON)
+                        .header("Authorization",token)
                         .content(objectMapper.writeValueAsString(dto))
                 )
                 .andExpect(status().isConflict());
@@ -65,14 +70,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
         var dto = new DtoClienteTestDataBuilder().build();
 
-        crear(dto);
+        String token = obtenerToken();
+        crear(dto, token);
     }
 
-    private void crear(DtoCliente dto) throws Exception {
+    private void crear(DtoCliente dto, String token) throws Exception {
 
         var result = mocMvc.perform(MockMvcRequestBuilders.post("/api/clientes")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto))
+                                .header("Authorization",token)
                 )
                 .andExpect(status().isOk())
                 .andReturn();
@@ -96,14 +103,28 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
         var dto = new DtoClienteTestDataBuilder().build();
 
-        this.crear(dto);
+        String token = obtenerToken();
+        this.crear(dto, token);
 
         mocMvc.perform(get("/api/clientes")
-                        .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("Authorization",token)
+                )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].nombre", is(dto.getNombre())))
                 .andExpect(jsonPath("$[0].pais", is(dto.getPais())))
                 .andExpect(jsonPath("$[0].direccion", is(dto.getDireccion())));
     }
 
+    private String obtenerToken() throws Exception {
+        DtoLogin login = new DtoLoginTestDataBuilder().build();
+        var resultLogin = mocMvc.perform(MockMvcRequestBuilders.post("/api/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(login))
+                )
+                .andExpect(status().isOk())
+                .andReturn();
+
+        return (String) objectMapper.readValue(resultLogin.getResponse().getContentAsString(), DtoRespuesta.class).getValor();
+    }
 }
