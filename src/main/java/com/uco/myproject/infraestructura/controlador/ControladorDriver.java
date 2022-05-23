@@ -8,10 +8,11 @@ import com.uco.myproject.aplicacion.servicio.driver.ServicioAplicacionListarDriv
 import com.uco.myproject.aplicacion.servicio.driver.ServicioAplicacionModificarDriver;
 
 import com.uco.myproject.dominio.modelo.Driver;
+import com.uco.myproject.infraestructura.aspectos.SecuredResource;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:4200")
+
 @RestController
 @RequestMapping("/api/driver")
 public class ControladorDriver {
@@ -27,27 +28,32 @@ public class ControladorDriver {
         this.servicioModificarDriver = servicioModificarDriver;
     }
     @GetMapping
+    @SecuredResource(name = "EMPLEADO")
     public List<Driver> listar() {
         return servicioListarDriver.ejecutar();
     }
 
     @GetMapping("/{codigo}")
+    @SecuredResource(name = "EMPLEADO")
     public Driver listar(@PathVariable Long codigo ) {
         return servicioListarDriver.consultar(codigo);
     }
 
     @PostMapping
+    @SecuredResource(name = "EMPLEADO")
     public DtoRespuesta<Long> crear(@RequestBody DtoDriver dto) {
         return this.servicioGuardarDriver.ejecutar(dto);
     }
 
     @PutMapping("/{codigo}")
+    @SecuredResource(name = "EMPLEADO")
     public DtoRespuesta<Long> modificar(@RequestBody DtoDriver driver, @PathVariable Long codigo)
     {
         return this.servicioModificarDriver.ejecutar(driver,codigo);
     }
 
     @DeleteMapping("/{codigo}")
+    @SecuredResource(name = "EMPLEADO")
     public DtoRespuesta<Long> eliminar(@PathVariable Long codigo)
     {
         return this.servicioEliminarDriver.ejecutar(codigo);

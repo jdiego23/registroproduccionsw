@@ -7,10 +7,11 @@ import com.uco.myproject.aplicacion.servicio.modulo.ServicioAplicacionGuardarMod
 import com.uco.myproject.aplicacion.servicio.modulo.ServicioAplicacionListarModulo;
 import com.uco.myproject.aplicacion.servicio.modulo.ServicioAplicacionModificarModulo;
 import com.uco.myproject.dominio.modelo.Modulo;
+import com.uco.myproject.infraestructura.aspectos.SecuredResource;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:4200")
+
 @RestController
 @RequestMapping("api/modulo")
 public class ControladorModulo {
@@ -27,27 +28,32 @@ public class ControladorModulo {
     }
 
     @GetMapping
+    @SecuredResource(name = "EMPLEADO")
     public List<Modulo> listar() {
         return servicioListarModulo.ejecutar();
     }
 
     @GetMapping("/{codigo}")
+    @SecuredResource(name = "EMPLEADO")
     public Modulo listar(@PathVariable Long codigo ) {
         return servicioListarModulo.consultar(codigo);
     }
 
     @PostMapping
+    @SecuredResource(name = "EMPLEADO")
     public DtoRespuesta<Long> crear(@RequestBody DtoModulo dto) {
         return this.servicioGuardarModulo.ejecutar(dto);
     }
 
     @PutMapping("/{codigo}")
+    @SecuredResource(name = "EMPLEADO")
     public DtoRespuesta<Long> modificar(@RequestBody DtoModulo modulo, @PathVariable Long codigo)
     {
         return this.servicioModificarModulo.ejecutar(modulo,codigo);
     }
 
     @DeleteMapping("/{codigo}")
+    @SecuredResource(name = "EMPLEADO")
     public DtoRespuesta<Long> eliminar(@PathVariable Long codigo)
     {
         return this.servicioEliminarModulo.ejecutar(codigo);

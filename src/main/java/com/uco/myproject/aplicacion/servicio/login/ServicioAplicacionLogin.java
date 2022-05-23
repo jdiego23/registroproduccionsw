@@ -29,7 +29,6 @@ public class ServicioAplicacionLogin {
 
         String claveCifrada = this.servicioCifrarTexto.ejecutar(dto.getClave());
         Usuario usuario = this.repositorioUsuario.consultar(dto.getUsuario(), claveCifrada);
-        usuario = usuario;
 
         if(usuario == null) {
             throw new IllegalStateException("Usuario o clave incorrecta");
