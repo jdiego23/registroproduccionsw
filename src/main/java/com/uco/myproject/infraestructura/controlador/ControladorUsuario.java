@@ -29,13 +29,12 @@ public class ControladorUsuario {
     }
 
     @GetMapping
-
+    @SecuredResource(name = "EMPLEADO")
     public List<DtoUsuarioResumen> listar() {
         return servicioListarUsuario.ejecutar();
     }
 
     @GetMapping("/{codigo}")
-    @SecuredResource(name = "EMPLEADO")
     public DtoUsuarioResumen listar(@PathVariable Long codigo ) {
         return servicioListarUsuario.consultar(codigo);
     }

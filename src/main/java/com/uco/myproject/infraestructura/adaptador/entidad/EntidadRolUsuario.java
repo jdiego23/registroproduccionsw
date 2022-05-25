@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "rol_usuario")
 public class EntidadRolUsuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String rol;
